@@ -6,8 +6,6 @@ class LocationSearchFacade
   end
 
   def locations
-    location_data = GoogleService.new(@coords).location_search
-
     location_data.map do |location|
       types = find_types(location[:types])
       if types.count > 0
@@ -25,6 +23,10 @@ class LocationSearchFacade
       types << type if @types.include?(type)
       types
     end
+  end
+
+  def location_data
+    GoogleService.new(@coords).location_search
   end
 
 end

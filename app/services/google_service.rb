@@ -5,8 +5,6 @@ class GoogleService
   end
 
   def location_search
-    results = conn.get "/maps/api/place/nearbysearch/json", opts
-
     JSON.parse(results.body, symbolize_names: true)[:results]
   end
 
@@ -22,6 +20,10 @@ class GoogleService
       radius: 500,
       key: ENV['GOOGLE_API_KEY']
     }
+  end
+
+  def results
+    conn.get "/maps/api/place/nearbysearch/json", opts
   end
 
 end

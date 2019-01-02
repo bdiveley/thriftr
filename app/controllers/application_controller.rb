@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
     TwilioService.new.send_verification_code(phone_number,session[:code])
   end
 
+  def code_verified
+    params[:q] == session[:code]
+  end
+
 end

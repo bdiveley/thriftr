@@ -12,7 +12,7 @@ class LoginController < ApplicationController
   end
 
   def create
-   if params[:q] == session[:code]
+   if code_verified
      redirect_to dashboard_path
    else
      session.clear

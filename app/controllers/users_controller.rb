@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:q] == session[:code]
+    if code_verified
       current_user.update(phone_number: session[:new_phone_number])
       flash[:success] = "Phone number successfully updated"
       redirect_to dashboard_path

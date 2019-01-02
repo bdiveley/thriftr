@@ -14,11 +14,10 @@ class BudgetFacade
   end
 
   def location_budgets(data)
-    requested_budgets = request_budgets(data)
     budgets = []
     @types.each do |type|
       @budget_categories[type].each do |name|
-        requested_budgets.each do |budget|
+        request_budgets(data).each do |budget|
           budgets << budget if budget.name == name
         end
       end
@@ -27,13 +26,19 @@ class BudgetFacade
   end
 
   def request_budgets(data)
-    service = YnabService.new(data)
-    budgets = service.budget_categories
-
-    budgets.map do |budget|
+    budgets(data).map do |budget|
       Budget.new(budget[:name],
                 budget[:balance])
     end
+  end
+
+private
+  def service(data)
+    YnabService.new(data)
+  end
+
+  def budgets(data)
+    service(data).budget_categories
   end
 
 end
