@@ -13,7 +13,7 @@ feature "as a registered user" do
 
       expect(current_path).to eq(edit_user_path(user))
       expect(page).to have_content("Please enter new phone number below")
-      fill_in 'user[phone_number]', with: 6182460553
+      fill_in 'user[phone_number]', with: ENV['REGISTERED_NUMBER']
 
       click_on ("Update Phone Number")
 

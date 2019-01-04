@@ -11,7 +11,7 @@ feature "As a visitor" do
 
     expect(page).to have_button("Login")
 
-    fill_in :q, with: 6182460553
+    fill_in :q, with: ENV['REGISTERED_NUMBER']
     click_on "Login"
 
     expect(current_path).to eq(root_path)
@@ -29,7 +29,7 @@ feature "As a visitor" do
       expect(page).to have_content("Sign up for Thriftr")
 
       fill_in 'user[username]', with: "Bob"
-      fill_in 'user[phone_number]', with: 6182460553
+      fill_in 'user[phone_number]', with: ENV['REGISTERED_NUMBER']
       click_on "Submit"
 
       fill_in :q, with: "19035"
@@ -43,13 +43,13 @@ feature "As a visitor" do
     stub_twilio_api
     stub_ynab_budget_id_request
     stub_omniauth
-    user = User.create(username: "godzilla", phone_number: 3038853559)
+    user = User.create(username: "godzilla", phone_number: ENV['REGISTERED_NUMBER'])
 
     visit root_path
 
     expect(page).to have_button("Login")
 
-    fill_in :q, with: 3038853559
+    fill_in :q, with: ENV['REGISTERED_NUMBER']
     click_on "Login"
 
     expect(current_path).to eq("/auth/ynab/callback")
@@ -58,11 +58,11 @@ feature "As a visitor" do
     stub_twilio_api
     stub_ynab_budget_id_request
     stub_omniauth
-    user = User.create(username: "godzilla", phone_number: 3038853559)
+    user = User.create(username: "godzilla", phone_number: ENV['REGISTERED_NUMBER'])
 
     visit root_path
 
-    fill_in :q, with: 3038853559
+    fill_in :q, with: ENV['REGISTERED_NUMBER']
     click_on "Login"
 
     fill_in :q, with: "19035"
@@ -75,11 +75,11 @@ feature "As a visitor" do
     stub_twilio_api
     stub_ynab_budget_id_request
     stub_omniauth
-    user = User.create(username: "godzilla", phone_number: 3038853559)
+    user = User.create(username: "godzilla", phone_number: ENV['REGISTERED_NUMBER'])
 
     visit root_path
 
-    fill_in :q, with: 3038853559
+    fill_in :q, with: ENV['REGISTERED_NUMBER']
     click_on "Login"
 
     expect(current_path).to eq("/auth/ynab/callback")

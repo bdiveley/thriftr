@@ -17,7 +17,7 @@ RSpec.describe TwilioService do
 
   it 'can send_verification_code' do
     VCR.use_cassette("twilio_verify_cassette") do
-      number = 6182460553
+      number = ENV['REGISTERED_NUMBER']
       code = "43819"
       service = TwilioService.new
       response = service.send_verification_code(number,code)
@@ -27,7 +27,7 @@ RSpec.describe TwilioService do
   end
   it 'can send_verification_code' do
     VCR.use_cassette("twilio_notification_cassette") do
-      number = 3038853559
+      number = ENV['REGISTERED_NUMBER']
       msg = Message.create(text_msg: "Have you checked your YNAB budget today?")
       service = TwilioService.new
       response = service.send_notification(number, msg)

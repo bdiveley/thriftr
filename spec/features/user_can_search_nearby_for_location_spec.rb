@@ -5,7 +5,7 @@ describe 'a user' do
     stub_nearby_search
 
     # As a registered user
-    user = User.create(username: "godzilla", phone_number: 3038853559)
+    user = User.create(username: "godzilla", phone_number: ENV['REGISTERED_NUMBER'])
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     # When I visit /dashboard
     visit '/dashboard'
@@ -28,7 +28,7 @@ describe 'a user' do
   it 'gets an error message if no places are nearby', :js do
     stub_nearby_search_sad
 
-    user = User.create(username: "godzilla", phone_number: 3038853559)
+    user = User.create(username: "godzilla", phone_number: ENV['REGISTERED_NUMBER'])
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/dashboard'

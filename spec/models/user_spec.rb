@@ -9,8 +9,8 @@ RSpec.describe User, type: :model do
   end
   describe 'class methods' do
     it '::daily_notification_users'do
-    user_1 = User.create(username: "a", phone_number: 3038853559)
-    user_2 = User.create(username: "b", phone_number: 6182460553, notifications: false)
+    user_1 = User.create(username: "a", phone_number: ENV['REGISTERED_NUMBER'])
+    user_2 = User.create(username: "b", phone_number: ENV['REGISTERED_NUMBER'], notifications: false)
 
     users = User.daily_notification_users
 

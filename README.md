@@ -51,6 +51,7 @@ YNAB_CLIENT_SECRET: ynab_client_secret_here
 GOOGLE_API_KEY: google_api_key_goes_here
 TWILIO_ACCOUNT_SID: twilio_account_sid_here
 TWILIO_AUTH_TOKEN: twilio_auth_token_here
+REGISTERED_NUMBER: registered_twilio_phone_number
 
 ## Running the tests
 

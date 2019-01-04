@@ -7,7 +7,7 @@ describe 'a user' do
       stub_full_budget_data
 
       # As a registered user
-      user = User.create(username: "godzilla", phone_number: 3038853559, ynab_budget_id: "#{ENV['YNAB_BUDGET_ID']}")
+      user = User.create(username: "godzilla", phone_number: ENV['REGISTERED_NUMBER'], ynab_budget_id: "#{ENV['YNAB_BUDGET_ID']}")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       # From the /results page
       visit '/results?location=39.742905,-104.989545'
